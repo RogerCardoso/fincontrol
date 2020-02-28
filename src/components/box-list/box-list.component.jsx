@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 
-import { BillBox } from '../bill-box/bill-box.component';
+import BillBox from '../bill-box/bill-box.component';
 
-import './box-list.styles.scss'
-import NewBillPopup from '../bill-popup/bill-popup.component';
+import './box-list.styles.scss';
 
 class BoxList extends Component {
     constructor(props) {
         super(props);
-
-        this.state = { showPopup: false };
     }
 
     sortBills = (bills, payday) => {
@@ -21,12 +18,6 @@ class BoxList extends Component {
         let adjusted = parseInt(date);
         if(adjusted < payday) { adjusted = adjusted + 30 }
         return adjusted;
-    }
-
-    togglePopup() {
-        this.setState({  
-            showPopup: !this.state.showPopup
-        });  
     }
 
     render() {
@@ -44,12 +35,6 @@ class BoxList extends Component {
                 this.sortBills(this.props.bills, this.props.payday).map(bill => (
                     <BillBox key={bill.name} bill={bill}/>
                 )) : <div className='no-bills'>You have no registered bills.</div> }
-                <button onClick={this.togglePopup.bind(this)}> + </button>
-                { this.state.showPopup ?  
-                    <NewBillPopup  
-                        closePopup={this.togglePopup.bind(this)}  
-                    />  
-                : null  }  
             </div>
         )
     }

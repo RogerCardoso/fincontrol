@@ -1,4 +1,13 @@
-.App {
+$break-small: 400px;
+
+@import url('https://fonts.googleapis.com/css?family=Nunito|Nunito+Sans:200,400,700,900&display=swap');
+
+body {
     max-width: 1080px;
-    margin: auto;
+    margin: 20px;
+    font-family: 'Nunito Sans', sans-serif;
+
+    @media only screen and (max-width: $break-small) {
+        margin: 5px;
+    }
 }

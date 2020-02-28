@@ -1,10 +1,9 @@
 .homepage {
-    max-width: 1080px;
     margin: auto;
 
     #title {
         display: flex;
-        margin: 10px 30px;
+        margin: 10px 0px;
         text-transform: uppercase;
 
         a {
@@ -23,14 +22,14 @@
             color: black;
             margin-right: 0px;
             cursor: pointer;
-            transition: font-size 1s ease-in-out;
+            transition: font-size 1s ease-in;
 
             &:after {
                 display:block;
                 content: '';
                 border-bottom: solid 1px grey;  
                 transform: scaleX(0);  
-                transition: transform 1s ease-in-out;
+                transition: transform 1s ease-in;
             }
 
             &:hover {
@@ -50,5 +49,82 @@
             padding: 2px;
             transform: rotate(-135deg);
         }
+    }
+
+    .popup-button {
+        font-family: 'Nunito', sans-serif;
+        padding: 2px;
+        border-radius: 13px;
+        background-color: #679bd0;
+        color: white;
+        position: absolute;
+        right: 3%;
+        text-decoration: none;
+        cursor: pointer;
+        text-align: center;
+        font-weight: 600;
+
+        &.x {
+            width: 14px;
+            height: 14px;
+            font-size: 10px;
+            transition: all 0.5s;
+
+            &:after {
+                content: 'x';
+            }
+
+            &:before {
+                content: '';
+                transition: width 1s, background-color 0.5s, content 0.5s;
+                transition-delay: content 0.5s;
+            }
+
+            &:hover {
+                width: 50px;
+                background-color: #4c7298;
+
+                &:after {
+                    content: '';
+                }
+
+                &:before {
+                    content: 'close x';
+                }
+            }
+        }
+
+        &.\+ {
+            width: 22px;
+            height: 22px;
+            transition: all 1s;
+
+            &:after {
+                content: '+';
+            }
+
+            &:before {
+                content: '';
+                transition: width 1s, background-color 0.5s, content 0.5s;
+                transition-delay: content 0.5s;
+            }
+
+            &:hover {
+                width: 118px;
+                background-color: #4c7298;
+
+                &:after {
+                    content: '';
+                }
+
+                &:before {
+                    content: '+ add new bill';
+                }
+            }
+    
+            
+        }
+
+        
     }
 }

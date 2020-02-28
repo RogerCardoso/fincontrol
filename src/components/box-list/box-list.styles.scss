@@ -2,9 +2,10 @@ $break-large: 570px;
 $break-small: 350px;
 
 .box-list {
-    margin: 10px;
+    margin: 10px 0px;
+
     .list-title{
-        margin: 1px 20px;
+        margin: 1px 0px;
         padding: 2px 0px;
         text-align: center;
         border: 1px solid black;
@@ -16,6 +17,10 @@ $break-small: 350px;
     .no-bills {
         text-align: center;
         margin: 10px 0 50px 0;
+
+        @media only screen and (max-width: $break-small) {
+            font-size: 12px;
+        }
     }
 
     h1 {
@@ -47,5 +52,10 @@ $break-small: 350px;
         &:last-child {
             width: 12%;
         }
+    }
+
+    .popup-button {
+        font-size: 12px;
+        width: 16px;
     }
 }

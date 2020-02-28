@@ -1,22 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import './bill-box.styles.scss'
+import './bill-box.styles.scss';
 
-const isPaid = paid => {
-    if (paid === "paid") {
-        return <i className="fa fa-check"></i>;
-    } else {
-        return "";
+import BillPopup from '../../components/bill-popup/bill-popup.component'
+
+class BillBox extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showPopup: false
+        }
     }
-} 
+    isPaid = paid => {
+        if (paid === "paid") {
+            return <i className="fa fa-check"></i>;
+        } else {
+            return "";
+        }
+    }
 
-export const BillBox = props => (
-    <div className={'billbox-container ' + (props.bill.type === "bill" ? 'bill' : 'to-receive') }>
-        <h1>{props.bill.name}</h1>
-        <p>{props.bill.date}</p>
-        <p>{props.bill.paymentType}</p>
-        <p><span>{props.bill.estimative}</span></p>
-        <p><span>{props.bill.real}</span></p>
-        <p>{isPaid(props.bill.status)}</p>
-    </div>
-)
+    togglePopup() {
+        this.setState({  
+            showPopup: !this.state.showPopup
+        });
+    }
+
+    render() {
+        return(
+            <div>
+                <div 
+                className={'billbox-container ' + (this.props.bill.type === "bill" ? 'bill' : 'to-receive') }
+                onClick={ this.togglePopup.bind(this) }
+                >
+                    <h1>{this.props.bill.name}</h1>
+                    <p>{this.props.bill.date}</p>
+                    <p>{this.props.bill.method}</p>
+                    <p><span>{this.props.bill.estimative}</span></p>
+                    <p><span>{this.props.bill.real}</span></p>
+                    <p>{this.isPaid(this.props.bill.status)}</p>
+                </div>
+                <div>
+                    { this.state.showPopup ?  
+                        <BillPopup  
+                            closePopup={ this.togglePopup.bind(this) }
+                            bill={ this.props.bill }
+                        />  
+                    : null  }
+                </div>
+            </div>
+        )
+    }
+}
+
+export default BillBox

@@ -5,10 +5,20 @@ import './bill-popup.styles.scss'
 import CustomButton from '../custom-button/custom-button.components';
 import { Link } from 'react-router-dom';
 
-class NewBillPopup extends React.Component {
+class BillPopup extends React.Component {
     constructor(props) {
         super(props);
-        this.state={};
+        this.state={
+            bill: {
+                "name": "",
+                "estimative": "",
+                "real": "",
+                "date": "",
+                "method": "",
+                "status": "unpaid",
+                "type" : ""
+            }
+        };
     }
     
     handleSubmit = event => {
@@ -17,89 +27,107 @@ class NewBillPopup extends React.Component {
     }
 
     handleChange = event => {
-        const { name, value } = event.target;
+        const target = event.target;
+        const name = event.target.name;
+        const value = event.type === 'checkbox' ? target.checked : target.value;
         this.setState({ [name]: value });
+    }
+
+    componentDidMount() {
+        if (this.props.bill != null) {
+            this.setState({ bill: this.props.bill })
+            console.log(this.props.bill)
+        }
     }
     
     render() {  
         return (  
             <div className='popup'>  
                 <div className='inner'>
-                    <i onClick={ this.props.closePopup }>X</i>
-                    <h3>New Bill:</h3>
+                    <span className='popup-button x' onClick={ this.props.closePopup } />
+                    {console.log(this.props.bill)}
+                    <h3>{ this.props.bill == null ? 'Add a New Bill' : 'Edit Bill' }</h3>
                     <form onSubmit={ this.handleSubmit }>
                         <div className='input-div'>
-                            <label for='bill'>Bill Name:</label>
-                            <input 
-                            name='bill'
-                            type='text'
-                            placeholder='bill'
-                            onChange={ this.handleChange }
-                            value={ this.state.bill }
-                            required />
+                            <label for='type'>Is it a bill or a money to receive?</label>
+                            <select
+                                name='type'
+                                type='select'
+                                onChange={this.handleChange}
+                                value={this.state.bill.type}>
+                                <option value="bill">Bill</option>
+                                <option value="to receive">To Receive</option>
+                            </select>
                         </div>
                         <div className='input-div'>
-                            <label for='bill'>Bill Name:</label>
+                            <label for='name'>Bill Name:</label>
                             <input 
-                            name='bill'
-                            type='text'
-                            placeholder='bill'
-                            onChange={ this.handleChange }
-                            value={ this.state.bill }
-                            required />
+                                name='name'
+                                type='text'
+                                text={ this.state.bill.name }
+                                placeholder='i.e. Energy'
+                                onChange={ this.handleChange }
+                                value={ this.state.bill.name }
+                                required
+                            />
                         </div>
                         <div className='input-div'>
                             <label for='date'>Payment Day:</label>
                             <input 
-                            name='date'
-                            type='number'
-                            placeholder='00' 
-                            min='1' 
-                            max='30'
-                            onChange={ this.handleChange }
-                            value={ this.state.date }
-                            required />
+                                name='date'
+                                type='number'
+                                placeholder='00'
+                                text={ this.state.bill.date }
+                                min='1' 
+                                max='30'
+                                onChange={ this.handleChange }
+                                value={ this.state.bill.date }
+                            />
                         </div>
                         <div className='input-div'>
                             <label for='method'>Payment Method:</label>
                             <input 
-                            name='method'
-                            type='text'
-                            placeholder='Bank Transfer'
-                            onChange={ this.handleChange }
-                            value={ this.state.method }
-                            required />
+                                name='method'
+                                type='text'
+                                placeholder='i.e. Direct Debit'
+                                text={ this.state.bill.method }
+                                onChange={ this.handleChange }
+                                value={ this.state.bill.method }
+                                required
+                            />
                         </div>
                         <div className='input-div'>
                             <label for='estimative'>Monthly Estimative Amount:</label>
                             <input 
-                            name='estimative'
-                            type='number'
-                            placeholder='£0.00'
-                            min='0'
-                            onChange={ this.handleChange }
-                            value={ this.state.estimative }
-                            required />
+                                name='estimative'
+                                type='number'
+                                placeholder='£0.00'
+                                min='0'
+                                onChange={ this.handleChange }
+                                value={ this.state.bill.estimative }
+                                required
+                            />
                         </div>
                         <div className='input-div'>
                             <label for='real'>This Month Amount:</label>
                             <input 
-                            name='real'
-                            type='text'
-                            placeholder='Bank Transfer'
-                            onChange={ this.handleChange }
-                            value={ this.state.real }
-                            required />
+                                name='real'
+                                type='text'
+                                placeholder='£0.00'
+                                onChange={ this.handleChange }
+                                value={ this.state.bill.real }
+                                required
+                            />
                         </div>
                         <div className='input-div'>
-                            <label for='status'>Is this bill paid?</label>
+                            <label for='paid'>Is this bill paid?</label>
                             <input 
-                            name='status'
-                            type='checkbox'
-                            placeholder='Bank Transfer'
-                            onChange={ this.handleChange }
-                            value={ this.state.method }
-                            required />
+                                name='paid'
+                                type='checkbox'
+                                checked={ this.state.bill.status }
+                                onChange={ this.handleChange }
+                                value={ this.state.bill.status }
+                            />
                         </div>
                         <CustomButton type='submit' value='Add Bill'  />
                         
@@ -111,4 +139,4 @@ class NewBillPopup extends React.Component {
     }  
 }
 
-export default NewBillPopup;
+export default BillPopup;

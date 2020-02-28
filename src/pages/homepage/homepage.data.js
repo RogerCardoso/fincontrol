@@ -1,5 +1,5 @@
 /*const HOMEPAGE_DATA = {
-    payday: "",
+    payday: 25,
     bills: [
         {
             "bill": "Energy",
@@ -60,7 +60,15 @@
 
 const HOMEPAGE_DATA = {
     payday: "",
-    bills: ""
+    bills: [{
+        "name": "C",
+        "estimative": "05.00",
+        "real": "x5.00",
+        "date": "26",
+        "method": "-",
+        "status": "unpaid",
+        "type" : "bill"
+    }]
 }
 
 export default HOMEPAGE_DATA
