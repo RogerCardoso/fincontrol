@@ -1,0 +1,49 @@
+$break-large: 570px;
+$break-small: 350px;
+
+.to-receive {
+    //background-color: #c4f9cd;
+}
+.bill {
+    //background-color: lightpink;
+}
+.billbox-container {
+    margin: 1px 20px;
+    padding: 2px 5px;
+    text-align: center;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    h1 {
+        display: inline-block;
+        font-size: 18px;
+        margin: auto;
+        width: 20%;
+        @media only screen and (min-width: $break-small) and (max-width: $break-large) {
+            font-size: 14px;
+        }
+        @media only screen and (max-width: $break-small) {
+            font-size: 10px;
+        }
+    }
+    p {
+        display: inline-block;
+        margin: auto;
+        width: 17%;
+        
+        @media only screen and (min-width: $break-small) and (max-width: $break-large) {
+            font-size: 12px;
+        }
+        @media only screen and (max-width: $break-small) {
+            font-size: 9px;
+        }
+
+        &:last-child {
+            width: 12%;
+        }
+
+        span::before {
+            content: "£"
+        }
+    }
+}

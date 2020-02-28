@@ -1,0 +1,51 @@
+$break-large: 570px;
+$break-small: 350px;
+
+.box-list {
+    margin: 10px;
+    .list-title{
+        margin: 1px 20px;
+        padding: 2px 0px;
+        text-align: center;
+        border: 1px solid black;
+        background-color: lightgray;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .no-bills {
+        text-align: center;
+        margin: 10px 0 50px 0;
+    }
+
+    h1 {
+        display: inline-block;
+        font-size: 18px;
+        margin: auto;
+        width: 20%;
+        @media only screen and (min-width: $break-small) and (max-width: $break-large) {
+            font-size: 14px;
+        }
+        @media only screen and (max-width: $break-small) {
+            font-size: 10px;
+        }
+    }
+
+    h2 {
+        display: inline-block;
+        font-size: 16px;
+        margin: auto;
+        width: 16%;
+
+        @media only screen and (min-width: $break-small) and (max-width: $break-large) {
+            font-size: 12px;
+        }
+        @media only screen and (max-width: $break-small) {
+            font-size: 9px;
+        }
+
+        &:last-child {
+            width: 12%;
+        }
+    }
+}
